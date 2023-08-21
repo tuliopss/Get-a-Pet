@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 
 const createUserToken = require("../helpers/createUserToken");
 const getToken = require("../helpers/getToken");
+const getUserByToken = require("../helpers/getUserByToken");
 
 module.exports = class UserController {
   static async register(req, res) {
@@ -111,5 +112,69 @@ module.exports = class UserController {
       currentUser = null;
     }
     res.status(200).send(currentUser);
+  }
+
+  static async getUserById(req, res) {
+    const id = req.params.id;
+
+    try {
+      const user = await User.findById(id).select("-password");
+
+      res.status(200).json({ user });
+    } catch (error) {
+      return res.status(422).json({ message: "Usuário não encontrado!" });
+    }
+  }
+
+  static async editUser(req, res) {
+    const id = req.params.id;
+
+    const token = getToken(req);
+    const user = await getUserByToken(token);
+
+    const { name, email, phone, password, confirmPassword } = req.body;
+    let image = "";
+    if (!name) {
+      res.status(422).json({ message: "O nome é obrigatório!" });
+      return;
+    }
+
+    user.name = name;
+
+    const userExists = await User.findOne({ email: email });
+
+    if (user.email !== email && userExists) {
+      res.status(422).json({ message: "Por favor, utilize outro email" });
+      return;
+    }
+    user.email = email;
+
+    if (!phone) {
+      res.status(422).json({ message: "O número de telefone é obrigatório!" });
+      return;
+    }
+    user.phone = phone;
+
+    if (password !== confirmPassword) {
+      res.status(422).json({ message: "Senhas não coincidentes!" });
+      return;
+    } else if (password === confirmPassword && password !== null) {
+      const salt = await bcrypt.genSalt(12);
+      const passwordHash = await bcrypt.hash(password, salt);
+
+      user.password = passwordHash;
+    }
+
+    try {
+      await User.findOneAndUpdate(
+        { _id: user._id },
+        { $set: user },
+        { new: true }
+      );
+
+      res.status(200).json({ message: "Usuário atualizado com sucesso!" });
+    } catch (error) {
+      res.status(500).json({ message: error });
+    }
   }
 };
