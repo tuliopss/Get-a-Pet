@@ -133,7 +133,11 @@ module.exports = class UserController {
     const user = await getUserByToken(token);
 
     const { name, email, phone, password, confirmPassword } = req.body;
-    let image = "";
+
+    if (req.file) {
+      user.image = req.file.filename;
+    }
+
     if (!name) {
       res.status(422).json({ message: "O nome é obrigatório!" });
       return;
@@ -158,7 +162,7 @@ module.exports = class UserController {
     if (password !== confirmPassword) {
       res.status(422).json({ message: "Senhas não coincidentes!" });
       return;
-    } else if (password === confirmPassword && password !== null) {
+    } else if (password === confirmPassword && password != null) {
       const salt = await bcrypt.genSalt(12);
       const passwordHash = await bcrypt.hash(password, salt);
 
