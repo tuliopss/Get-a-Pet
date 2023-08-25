@@ -1,5 +1,5 @@
 const Pet = require("../models/Pet");
-
+const mongoose = require("mongoose");
 const getToken = require("../helpers/getToken");
 const getUserByToken = require("../helpers/getUserByToken");
 
@@ -73,5 +73,13 @@ module.exports = class PetController {
     const pets = await Pet.find().sort("createdAt");
 
     res.status(200).json({ pets: pets });
+  }
+
+  static async getAllUserPets(req, res) {
+    const token = getToken(req);
+    const user = await getUserByToken(token);
+
+    const pets = await Pet.find({ "user.id": user._id }).sort("-createdAt");
+    res.status(200).json({ pets });
   }
 };
