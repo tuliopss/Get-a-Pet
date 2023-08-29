@@ -7,12 +7,14 @@ import Navbar from "./components/layouts/Navbar";
 import Footer from "./components/layouts/Footer";
 import Container from "./components/layouts/Container";
 import { UserProvider } from "./context/UserContext";
+import Message from "./components/layouts/Message";
 
 function App() {
   return (
     <Router>
       <UserProvider>
         <Navbar />
+        <Message />
         <Container>
           <Routes>
             <Route path='/login' element={<Login />} />
