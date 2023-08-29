@@ -83,8 +83,6 @@ module.exports = class UserController {
       res.status(422).json({ message: "Usuário não encontrado!" });
       return;
     }
-    console.log(password);
-    console.log(user.password);
 
     const checkPassword = await bcrypt.compare(password, user.password);
 
