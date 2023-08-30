@@ -58,8 +58,8 @@ const Profile = () => {
         return response.data;
       })
       .catch((err) => {
-        msgType: "error";
-        msgText: err.response.data;
+        msgType = "error";
+        msgText = err.response.data;
       });
 
     setFlashMessage(data.message, msgType);

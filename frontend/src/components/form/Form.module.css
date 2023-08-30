@@ -33,3 +33,16 @@
   color: #0d3477;
   font-weight: bold;
 }
+
+/* form pets */
+.preview_pets_images {
+  display: flex;
+  justify-content: center;
+  margin: 1em;
+}
+
+.preview_pets_images img {
+  width: 100px;
+  height: 100px;
+  margin-left: 1em;
+}
