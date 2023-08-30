@@ -15,7 +15,6 @@ const Input = ({
       <input
         type={type}
         name={name}
-        id={name}
         placeholder={placeholder}
         onChange={handleOnChange}
         value={value}
