@@ -7,7 +7,7 @@ import Select from "./Select";
 const PetForm = ({ handleSubmit, petData, btnText }) => {
   const [pet, setPet] = useState(petData || {});
   const [preview, setPreview] = useState([]);
-  const colors = ["Branco", "Preto", "Cinza", "Caramelo"];
+  const colors = ["Branco", "Preto", "Cinza", "Caramelo", "Mesclado"];
 
   const onFileChange = (e) => {
     setPreview(Array.from(e.target.files));

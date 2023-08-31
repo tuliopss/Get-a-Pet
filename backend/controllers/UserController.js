@@ -97,8 +97,6 @@ module.exports = class UserController {
   static async checkUser(req, res) {
     let currentUser;
 
-    console.log(req.headers.authorization);
-
     if (req.headers.authorization) {
       const token = getToken(req);
       const decoted = jwt.verify(token, "nosso_secret_jwt");
