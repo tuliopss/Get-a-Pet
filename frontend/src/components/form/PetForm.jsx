@@ -40,7 +40,7 @@ const PetForm = ({ handleSubmit, petData, btnText }) => {
           : pet.images &&
             pet.images.map((image, index) => (
               <img
-                src={`http://localhost:5000/images/pet/${image}`}
+                src={`http://localhost:5000/images/pets/${image}`}
                 alt={pet.name}
                 key={`${pet.name}+${index}}`}
               />
@@ -72,7 +72,7 @@ const PetForm = ({ handleSubmit, petData, btnText }) => {
         value={pet.age || ""}
       />
       <Input
-        text='Peto do pet'
+        text='Peso do pet'
         type='number'
         name='weight'
         placeholder='Digite o peso do pet'
