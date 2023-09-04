@@ -35,6 +35,7 @@ module.exports = class UserController {
 
     if (password !== confirmPassword) {
       res.status(422).json({ message: "Senhas não coincidentes!" });
+      return;
     }
 
     const checkUserExists = await User.findOne({ email: email });
@@ -61,6 +62,7 @@ module.exports = class UserController {
       await createUserToken(newUser, req, res);
     } catch (error) {
       res.status(500).json({ message: error });
+      return;
     }
   }
 

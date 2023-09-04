@@ -6,6 +6,11 @@
   color: #16479d;
 }
 
+.navbar .title {
+  color: #16479d;
+  font-size: 1.5em;
+}
+
 .navbar_logo {
   display: flex;
   align-items: center;

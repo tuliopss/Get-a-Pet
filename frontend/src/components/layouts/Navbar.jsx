@@ -14,7 +14,9 @@ const Navbar = () => {
     <nav className={styles.navbar}>
       <div className={styles.navbar_logo}>
         <img src={Logo} alt='Get a Pet' />
-        <h2>Get a Pet</h2>
+        <Link className={styles.title} to='/'>
+          Get a Pet
+        </Link>
       </div>
       <ul>
         <li>

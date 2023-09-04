@@ -41,3 +41,12 @@
 .pet_details_container button:hover {
   background-color: #1c8a42;
 }
+
+p a {
+  text-decoration: underline;
+  color: #16479d;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.5s;
+  border-radius: 5px;
+}
