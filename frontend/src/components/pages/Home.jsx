@@ -15,7 +15,7 @@ const Home = () => {
   return (
     <section>
       <div className={styles.pet_home_header}>
-        <h1>Home</h1>
+        <h1>Adote um pet</h1>
         <p>Veja os detalhes de cada um e conheça o dono</p>
       </div>
       <div className={styles.pet_container}>
@@ -36,7 +36,7 @@ const Home = () => {
               {pet.available ? (
                 <Link to={`pet/${pet._id}`}>Mais detalhes</Link>
               ) : (
-                <p className={styles.adopted_text}>adotado</p>
+                <p className={styles.adopted_text}>Adotado</p>
               )}
             </div>
           ))}

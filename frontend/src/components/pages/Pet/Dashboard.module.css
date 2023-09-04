@@ -93,6 +93,19 @@
 .actions .conclude_btn {
   color: #25b456;
   border-color: #25b456;
+  text-decoration: none;
+  border-radius: 5px;
+  padding: 7px 12px;
+  background-color: #fff;
+  margin-left: 1em;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 12px;
+}
+
+.actions .conclude_btn:hover {
+  color: #fff;
+  background-color: #25b456;
 }
 
 .actions .conclude_btn:hover {
