@@ -38,9 +38,9 @@ const PetDetails = () => {
             <p>Se tiver interesse, marque uma visita!</p>
           </div>
           <div className={styles.pet_images}>
-            {pet.images.map((map, index) => (
+            {pet.images.map((image, index) => (
               <img
-                src={`http://localhost:5000/images/pets/${pet.images}`}
+                src={`http://localhost:5000/images/pets/${image}`}
                 alt={pet.name}
                 key={index}
               />
