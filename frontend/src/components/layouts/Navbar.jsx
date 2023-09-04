@@ -24,6 +24,9 @@ const Navbar = () => {
         {authenticated ? (
           <>
             <li>
+              <Link to='/pet/myadoptions'>Minhas adoções</Link>
+            </li>
+            <li>
               <Link to='/pet/mypets'>Meus pets</Link>
             </li>
             <li>

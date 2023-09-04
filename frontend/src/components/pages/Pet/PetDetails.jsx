@@ -9,6 +9,23 @@ const PetDetails = () => {
   const { setFlashMessage } = useFlashMessage();
   const [token] = useState(localStorage.getItem("token") || "");
 
+  const schedule = async () => {
+    let msgType = "success";
+
+    const data = await api
+      .patch(`pets/schedule/${pet._id}`, {
+        Authorization: `Bearer ${JSON.parse.token}`,
+      })
+      .then((response) => {
+        return response.data;
+      })
+      .catch((error) => {
+        msgType = "error";
+        return error.response.data;
+      });
+    setFlashMessage(data.message, msgType);
+  };
+
   useEffect(() => {
     api.get(`/pets/${id}`).then((response) => setPet(response.data.pet));
   }, [id]);
@@ -38,7 +55,7 @@ const PetDetails = () => {
             {pet.age} anos
           </p>
           {token ? (
-            <button>Solicitar visita</button>
+            <button onClick={schedule}>Solicitar visita</button>
           ) : (
             <p>
               Você precisa <Link to='/register'>criar uma conta</Link> para
